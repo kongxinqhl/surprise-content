@@ -34,13 +34,13 @@ input,textarea,select,button{font-family:inherit}
 .side .foot{margin-top:auto;display:flex;flex-direction:column;gap:8px}
 .side .foot button{background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:10px;font-size:13px;cursor:pointer}
 .side .foot .pub{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#241a08;border:none;font-weight:700}
-.main{padding:28px 32px 60px;max-width:960px;width:100%}
+.main{padding:28px 32px 60px;max-width:1000px;width:100%}
 .main h2{font-size:22px;color:var(--gold2);font-family:"Noto Serif SC",serif;margin-bottom:4px}
 .main .sub{color:var(--muted);font-size:13px;margin-bottom:22px}
 .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:20px}
 .panel h3{font-size:15px;color:var(--gold2);margin-bottom:14px;font-family:"Noto Serif SC",serif}
 .row{display:flex;gap:10px;margin-bottom:12px;align-items:center;flex-wrap:wrap}
-.row label{width:130px;color:var(--muted);font-size:13px;flex-shrink:0}
+.row label{width:120px;color:var(--muted);font-size:13px;flex-shrink:0}
 .row input,.row textarea,.row select{flex:1;min-width:180px;background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:8px;padding:10px 12px;font-size:14px;outline:none}
 .row input:focus,.row textarea:focus{border-color:var(--gold)}
 .row textarea{min-height:84px;resize:vertical;line-height:1.7}
@@ -48,24 +48,27 @@ input,textarea,select,button{font-family:inherit}
 .btn:hover{background:rgba(232,185,106,.28)}
 .btn.danger{color:var(--red);border-color:rgba(227,125,106,.3);background:none}
 .btn.solid{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#241a08;border:none;font-weight:700}
-.pw-item{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:10px}
-.pw-item .head{display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap}
-.pw-item .pwc{font-weight:700;color:var(--gold2);letter-spacing:.06em;background:rgba(232,185,106,.14);padding:4px 10px;border-radius:6px}
-.pw-item .type{font-size:11px;color:var(--muted);border:1px solid var(--line);padding:2px 8px;border-radius:20px}
-.pw-item .acts{margin-left:auto;display:flex;gap:8px}
-.pw-item input{background:var(--panel2);border:1px solid var(--line);color:var(--gold2);border-radius:6px;padding:6px 10px;font-size:14px;outline:none}
-.card-row{display:flex;gap:8px;margin-top:10px;align-items:flex-start;background:rgba(255,255,255,.02);border:1px dashed var(--line);border-radius:8px;padding:10px;flex-wrap:wrap}
-.card-row .c-t{flex:1 1 200px;min-width:120px;background:var(--panel);border:1px solid var(--line);color:var(--gold2);border-radius:6px;padding:8px 10px;font-size:13px;outline:none}
-.card-row textarea{flex:1 1 100%;min-width:200px;background:var(--panel);border:1px solid var(--line);color:var(--text);border-radius:6px;padding:8px 10px;font-size:13px;min-height:60px;resize:vertical;outline:none}
-.card-row .c-m{flex:1 1 48%;min-width:160px;background:var(--panel);border:1px solid var(--line);color:#b9c6b9;border-radius:6px;padding:8px 10px;font-size:12px;outline:none}
-.card-row .up-down{display:flex;flex-direction:column;gap:4px}
-.up-down button{background:none;border:1px solid var(--line);color:var(--muted);width:26px;height:22px;cursor:pointer;font-size:11px;border-radius:4px;line-height:1}
-.card-row select.c-type{flex:1 1 130px;min-width:104px;background:var(--panel);border:1px solid var(--line);color:var(--gold2);border-radius:6px;padding:8px 10px;font-size:13px;outline:none}
-.card-row select.c-anim{flex:1 1 96px;min-width:80px;background:var(--panel);border:1px solid var(--line);color:#cfd8c8;border-radius:6px;padding:8px 10px;font-size:13px;outline:none}
+.pw-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.pw-head .pwc{font-weight:700;color:var(--gold2);letter-spacing:.06em;background:rgba(232,185,106,.14);padding:6px 12px;border-radius:6px}
+.pw-head input{background:var(--panel2);border:1px solid var(--line);color:var(--gold2);border-radius:6px;padding:8px 10px;font-size:14px;outline:none}
+.pw-head .e-title{color:var(--text);min-width:160px}
+.pw-head .type{font-size:11px;color:var(--muted);border:1px solid var(--line);padding:2px 8px;border-radius:20px}
+.pw-head .delpw{margin-left:auto}
+.card-row{display:flex;gap:8px;margin-bottom:10px;align-items:flex-start;background:rgba(255,255,255,.02);border:1px dashed var(--line);border-radius:8px;padding:10px;flex-wrap:wrap}
+.card-row .c-t{flex:1 1 180px;min-width:110px;background:var(--panel);border:1px solid var(--line);color:var(--gold2);border-radius:6px;padding:8px 10px;font-size:13px;outline:none}
+.card-row textarea{flex:1 1 100%;min-width:200px;background:var(--panel);border:1px solid var(--line);color:var(--text);border-radius:6px;padding:8px 10px;font-size:13px;min-height:56px;resize:vertical;outline:none}
+.card-row select{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:8px 10px;font-size:13px;outline:none}
+.card-row select.c-pw{color:var(--gold2);flex:1 1 110px;min-width:92px}
+.card-row select.c-type{color:var(--gold2);flex:1 1 100px;min-width:84px}
+.card-row select.c-anim{color:#cfd8c8;flex:1 1 84px;min-width:72px}
+.card-row input.c-m{flex:1 1 200px;min-width:140px;background:var(--panel);border:1px solid var(--line);color:#b9c6b9;border-radius:6px;padding:8px 10px;font-size:12px;outline:none}
+.card-row input[type=color]{flex:0 0 44px;width:44px;height:36px;padding:2px;border:1px solid var(--line);border-radius:6px;background:var(--panel);cursor:pointer}
 .card-row .row.small{display:flex;gap:8px;margin-top:6px;flex-basis:100%;flex-wrap:wrap}
 .card-row .row.small .btn{padding:6px 12px;font-size:12px}
-.card-row .f-img,.card-row .f-v{display:none}
+.card-row .f-img,.card-row .f-v,.card-row .f-bg{display:none}
 .card-row .vid-hint{flex-basis:100%;font-size:11px;color:#9a9380;background:rgba(255,255,255,.03);border:1px dashed var(--line);border-radius:6px;padding:6px 10px}
+.up-down{display:flex;flex-direction:column;gap:4px}
+.up-down button{background:none;border:1px solid var(--line);color:var(--muted);width:26px;height:22px;cursor:pointer;font-size:11px;border-radius:4px;line-height:1}
 .up-down button:hover{color:var(--gold2)}
 .photo-list{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
 .photo-tile{width:86px;text-align:center}
@@ -74,7 +77,7 @@ input,textarea,select,button{font-family:inherit}
 .publish-info{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
 .publish-info .chip{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:13px}
 .publish-info .chip b{color:var(--gold2);font-size:18px;display:block}
-textarea#export,textarea#buildOut{width:100%;height:150px;background:var(--panel2);border:1px solid var(--line);color:#cfd8c8;border-radius:8px;padding:12px;font-size:12px;font-family:ui-monospace,Menlo,monospace;resize:vertical}
+textarea#export,textarea#buildOut,textarea#ghOut{width:100%;height:140px;background:var(--panel2);border:1px solid var(--line);color:#cfd8c8;border-radius:8px;padding:12px;font-size:12px;font-family:ui-monospace,Menlo,monospace;resize:vertical}
 .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--gold);color:#241a08;font-weight:700;padding:12px 22px;border-radius:10px;font-size:14px;opacity:0;transition:.3s;z-index:40;pointer-events:none;box-shadow:0 10px 30px rgba(0,0,0,.4)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .hidden{display:none}
@@ -96,8 +99,7 @@ textarea#export,textarea#buildOut{width:100%;height:150px;background:var(--panel
   <aside class="side">
     <div class="brand"><img src="assets/icon.jpg" alt=""><div><b>惊喜内容</b><small>内容管理后台</small></div></div>
     <nav>
-      <button data-sec="birthday" class="on">卡片设置</button>
-      <button data-sec="passwords">密码管理</button>
+      <button data-sec="editor" class="on">卡片与密码</button>
       <button data-sec="publish">发布 · 导出</button>
     </nav>
     <div class="foot">
@@ -107,28 +109,24 @@ textarea#export,textarea#buildOut{width:100%;height:150px;background:var(--panel
     </div>
   </aside>
   <main class="main">
-    <section id="sec-birthday">
-      <h2>卡片设置</h2>
-      <div class="sub">为每个密码设置可左右滑动的卡片 · 每张卡片可加图片或视频 · 内容与「密码管理」同步</div>
+    <section id="sec-editor">
+      <h2>卡片与密码</h2>
+      <div class="sub">密码与卡片一体化管理：删密码会自动删除它的全部卡片；每张卡片可选所属密码、类型、动画与背景</div>
+
       <div class="panel">
-        <h3>生日通用设置（用于 0912 的认识天数 / 称呼 / 生日信 / 照片墙）</h3>
-        <div class="row"><label>对方称呼</label><input id="f_nick" placeholder="如：亲爱的 / 小琳"></div>
+        <h3>生日通用设置（称呼 / 认识日期 / 祝福语 / 生日信 / 回忆照片墙）</h3>
+        <div class="row"><label>对方称呼</label><input id="f_nick" placeholder="如：亲爱的"></div>
         <div class="row"><label>认识日期</label><input id="f_meet" type="date"></div>
         <div class="row"><label>祝福语（一条一行）</label><textarea id="f_bless" placeholder="每条祝福语占一行"></textarea></div>
         <h3 style="margin-top:14px">生日信</h3>
         <textarea id="f_letter" style="width:100%;min-height:150px;background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:8px;padding:12px;font-size:14px;line-height:1.9;outline:none"></textarea>
         <h3 style="margin-top:14px">回忆照片墙</h3>
         <div class="photo-list" id="photoList"></div>
-        <div class="row" style="margin-top:14px"><button class="btn" id="addPhoto">＋ 添加照片</button></div>
+        <div class="row" style="margin-top:14px"><button class="btn" id="addPhoto">＋ 添加照片</button><span class="muted" style="font-size:12px;color:var(--muted)">照片会随发布同步到手机端，点开可放大</span></div>
         <input type="file" id="photoFile" accept="image/*" multiple class="hidden">
       </div>
-      <div id="cardList"></div>
-    </section>
 
-    <section id="sec-passwords" class="hidden">
-      <h2>密码管理</h2>
-      <div class="sub">仅管理解锁密码 · 可修改密码、新增、删除</div>
-      <div id="pwList"></div>
+      <div id="pwdCardList"></div>
       <button class="btn solid" id="addPw">＋ 新增密码</button>
     </section>
 
@@ -153,7 +151,7 @@ textarea#export,textarea#buildOut{width:100%;height:150px;background:var(--panel
       <button class="btn solid" id="publishGithub" style="background:#4a9d5b">发布到GitHub（手机免安装静默更新）</button>
       <div class="panel" style="margin-top:12px">
         <h3>GitHub 发布结果</h3>
-        <textarea id="ghOut" readonly rows="6" placeholder="点击上方「发布到GitHub」后，手机端启动时会自动拉取新内容"></textarea>
+        <textarea id="ghOut" readonly rows="5" placeholder="点击上方「发布到GitHub」后，手机端启动时会自动拉取新内容"></textarea>
       </div>
 
       <button class="btn solid" id="doExport">导出 content.json（JSON）</button>
@@ -182,17 +180,17 @@ textarea#export,textarea#buildOut{width:100%;height:150px;background:var(--panel
 <script>
 const $=id=>document.getElementById(id);
 const DEFAULT_CONTENT={
-  version:"1",
+  version:"1.00",
   birthday:{nickname:"亲爱的",meetDate:"2023-09-12",
     blessings:["愿你今天被所有温柔以待","生日快乐，我的[称呼]","愿你的眼里永远有光，心里永远有暖","这一年也要好好照顾自己","遇见你，是我最好的幸运"],
     letter:"亲爱的[称呼]：\n\n今天是个特别的日子，是你的生日。\n\n我一直在想，该用怎样的语言，才能把想对你说的话全部说出来。我想了很久，最后决定把它们写成一封信，放在这里，等你自己慢慢读。\n\n谢谢你出现在我的生命里。你的笑，你的好，你身上所有让我心动的细节，都是我最想留住的光。往后的每一年，我都想陪你一起过。\n\n祝你生日快乐。愿你岁岁平安，年年喜乐，永远是我心里那个最好的人。\n\n—— 永远爱你的那个人",
     photos:[]},
   passwords:{
-    "520":{title:"写给最爱的人",type:"cards",cards:[{t:"见字如面",p:"有些话，平时开不了口，就写在这里给你。\n这封信，只写给你一个人。"},{t:"关于爱你",p:"爱上你这件事，从来没有让我后悔过。\n你的每一个样子，我都喜欢。"},{t:"往后余生",p:"往后余生，风雪是你，平淡是你。\n只要是你，晚一点也没关系。"},{t:"永远爱你的人",p:"这一页的密码是 520。\n而我心里，早就写满了这三个字。"}]},
-    "1314":{title:"一生一世",type:"cards",cards:[{t:"一生",p:"一生很长，我愿用这一生，\n去守一个人、护一份情。"},{t:"我承诺",p:"我承诺：无论岁月如何流转，\n我的目光始终只追随你。"},{t:"一世",p:"一世很短，短到来不及犹豫。\n所以我决定，从此刻开始珍惜你。"},{t:"1314",p:"1314，一生一世。\n这是我送给你，最重的誓言。"}]},
-    "521":{title:"藏起来的心里话",type:"cards",cards:[{t:"第一句",p:"其实从第一次见到你，\n我就偷偷把你放进了心里。"},{t:"第二句",p:"和你在一起的时候，\n连时间都变得好温柔。"},{t:"第三句",p:"你大概不知道，\n你笑起来的样子有多好看。"},{t:"第四句",p:"521——我爱你。\n这句话，我只想说给你听。"}]},
-    "happy":{title:"生日惊喜祝福",type:"cards",cards:[{t:"生日快乐",p:"祝你生日快乐！\n愿这一天的你，是最开心、最闪亮的你。"},{t:"美好祝愿",p:"愿你所有的愿望都能实现，\n所有的美好都如期而至。"},{t:"永远开心",p:"往后的日子，记得要快乐。\n因为你值得这世界上所有的好。"}]},
-    "0709":{title:"纪念日回忆",type:"cards",cards:[{t:"初见",p:"那一天，我们第一次遇见。\n也许当时谁也没想到，后来我们会走这么远。"},{t:"同行",p:"一路走来，有欢笑也有风雨。\n幸好，是你陪我一起走过。"},{t:"今天",p:"今天我们依然在一起。\n这本身就是最好的礼物。"},{t:"未来",p:"愿未来的每一个纪念日，\n我们都能一起度过。"}]},
+    "520":{title:"写给最爱的人",cards:[{t:"见字如面",p:"有些话，平时开不了口，就写在这里给你。"},{t:"关于爱你",p:"爱上你这件事，从来没有让我后悔过。"},{t:"往后余生",p:"往后余生，风雪是你，平淡是你。"},{t:"永远爱你的人",p:"这一页的密码是 520。"}]},
+    "1314":{title:"一生一世",cards:[{t:"一生",p:"一生很长，我愿用这一生，去守一个人、护一份情。"},{t:"我承诺",p:"我承诺：无论岁月如何流转，我的目光始终只追随你。"},{t:"一世",p:"一世很短，短到来不及犹豫。"},{t:"1314",p:"1314，一生一世。这是我送给你，最重的誓言。"}]},
+    "521":{title:"藏起来的心里话",cards:[{t:"第一句",p:"其实从第一次见到你，我就偷偷把你放进了心里。"},{t:"第二句",p:"和你在一起的时候，连时间都变得好温柔。"},{t:"第三句",p:"你大概不知道，你笑起来的样子有多好看。"},{t:"第四句",p:"521——我爱你。这句话，我只想说给你听。"}]},
+    "happy":{title:"生日惊喜祝福",cards:[{t:"生日快乐",p:"祝你生日快乐！愿这一天的你，是最开心、最闪亮的你。"},{t:"美好祝愿",p:"愿你所有的愿望都能实现，所有的美好都如期而至。"},{t:"永远开心",p:"往后的日子，记得要快乐。因为你值得这世界上所有的好。"}]},
+    "0709":{title:"纪念日回忆",cards:[{t:"初见",p:"那一天，我们第一次遇见。也许当时谁也没想到，后来我们会走这么远。"},{t:"同行",p:"一路走来，有欢笑也有风雨。幸好，是你陪我一起走过。"},{t:"今天",p:"今天我们依然在一起。这本身就是最好的礼物。"},{t:"未来",p:"愿未来的每一个纪念日，我们都能一起度过。"}]},
     "0912":{title:"生日惊喜",type:"birthday",cards:[
       {t:"生日快乐",p:"亲爱的[称呼]，生日快乐！\n愿这一天的你，是最开心、最闪亮的你。"},
       {t:"认识天数",p:"__DAYS__"},
@@ -209,116 +207,75 @@ function setAdminPwd(p){ try{ localStorage.setItem(PASS_KEY, p); }catch(e){} }
 let content=JSON.parse(JSON.stringify(DEFAULT_CONTENT));
 let adminAuthed=false;
 try{ const s=localStorage.getItem(LS_KEY); if(s){ content=JSON.parse(s); } const a=localStorage.getItem("jingxi_admin_pwd"); if(a) adminAuthed=true; }catch(e){}
-if(content && !content.version) content.version="1";
+if(content && !content.version) content.version="1.00";
 function toast(m){ const t=$("toast"); t.textContent=m; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),2200); }
-if(adminAuthed){ $("login").classList.add("hidden"); $("shell").classList.remove("hidden"); renderAll(); }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function getGhSettings(){ try{ const s=localStorage.getItem(GH_KEY); if(s) return JSON.parse(s); }catch(e){} return {owner:"",repo:"",branch:"main",token:""}; }
+
 $("loginBtn").addEventListener("click",()=>{ if($("apwd").value===getAdminPwd()){ adminAuthed=true; localStorage.setItem("jingxi_admin_pwd","1"); $("login").classList.add("hidden"); $("shell").classList.remove("hidden"); renderAll(); toast("登录成功"); }else{ $("loginErr").textContent="密码错误"; } });
 $("apwd").addEventListener("keydown",e=>{ if(e.key==="Enter") $("loginBtn").click(); });
 document.querySelectorAll(".side nav button").forEach(b=>b.addEventListener("click",()=>{
   document.querySelectorAll(".side nav button").forEach(x=>x.classList.remove("on")); b.classList.add("on");
-  ["passwords","birthday","publish"].forEach(s=>$("sec-"+s).classList.toggle("hidden",s!==b.dataset.sec));
+  ["editor","publish"].forEach(s=>$("sec-"+s).classList.toggle("hidden",s!==b.dataset.sec));
 }));
+if(adminAuthed){ $("login").classList.add("hidden"); $("shell").classList.remove("hidden"); renderAll(); }
 
-/* ===== 密码管理（仅密码） ===== */
-function renderPwList(){
-  const box=$("pwList"); box.innerHTML="";
-  Object.entries(content.passwords).forEach(([pw,e])=>{
-    const div=document.createElement("div"); div.className="pw-item";
-    div.innerHTML=`<div class="head">
-        <span class="pwc">密码</span>
-        <input class="e-pw" value="${esc(pw)}" style="width:120px" title="修改后回车生效">
-        <input class="e-title" value="${esc(e.title)}" style="width:220px;background:none;border:none;border-bottom:1px solid var(--line);color:var(--text);font-size:14px" placeholder="标题">
-        <span class="type">${e.type==="birthday"?"生日专页":"卡片内容"}</span>
-        <span class="acts"><button class="btn danger delpw">删除</button></span>
-      </div>`;
-    box.appendChild(div);
-    div.querySelector(".e-pw").addEventListener("change",()=>{ const nv=div.querySelector(".e-pw").value.trim(); if(!nv){div.querySelector(".e-pw").value=pw;return;} if(nv===pw)return; if(content.passwords[nv]){toast("该密码已存在");div.querySelector(".e-pw").value=pw;return;} const tmp=JSON.parse(JSON.stringify(e)); delete content.passwords[pw]; content.passwords[nv]=tmp; renderPwList(); renderCardList(); toast("密码已修改为 "+nv); });
-    div.querySelector(".e-title").addEventListener("input",()=>{ content.passwords[pw].title=div.querySelector(".e-title").value; });
-    div.querySelector(".delpw").addEventListener("click",()=>{ if(confirm("删除密码 "+pw+"？")){ delete content.passwords[pw]; renderPwList(); renderCardList(); } });
+/* ===== 生日通用设置 ===== */
+function renderBirthdayPanel(){
+  const b=content.birthday;
+  $("f_nick").value=b.nickname||""; $("f_meet").value=b.meetDate||""; $("f_bless").value=(b.blessings||[]).join("\n"); $("f_letter").value=b.letter||"";
+  const host=$("photoList"); host.innerHTML="";
+  (b.photos||[]).forEach((src,i)=>{
+    const t=document.createElement("div"); t.className="photo-tile";
+    t.innerHTML=`<img src="${src}"><button class="btn danger" data-i="${i}">删除</button>`; host.appendChild(t);
   });
+  host.querySelectorAll("button").forEach(x=>x.addEventListener("click",()=>{ content.birthday.photos.splice(+x.dataset.i,1); renderBirthdayPanel(); }));
 }
-function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
-$("addPw").addEventListener("click",()=>{ const pw=prompt("新密码（如：0616）"); if(!pw)return; if(content.passwords[pw]){toast("该密码已存在");return;} content.passwords[pw]={title:"新惊喜",type:"cards",cards:[{t:"卡片标题",p:"卡片正文"}]}; renderPwList(); renderCardList(); });
+$("f_nick").addEventListener("input",e=>content.birthday.nickname=e.value);
+$("f_meet").addEventListener("change",e=>content.birthday.meetDate=e.value);
+$("f_bless").addEventListener("input",e=>content.birthday.blessings=e.value.split("\n").filter(Boolean));
+$("f_letter").addEventListener("input",e=>content.birthday.letter=e.value);
+$("addPhoto").addEventListener("click",()=>$("photoFile").click());
+$("photoFile").addEventListener("change",e=>{ const fs=[...e.target.files]; if(!fs.length)return; fs.forEach(f=>{ const r=new FileReader(); r.onload=()=>{ content.birthday.photos.push(r.result); renderBirthdayPanel(); }; r.readAsDataURL(f); }); e.target.value=""; });
 
-/* ===== 卡片设置（每个密码的内容，含图片/视频） ===== */
-function renderCardList(){
-  const box=$("cardList"); box.innerHTML="";
-  Object.entries(content.passwords).forEach(([pw,e])=>{
-    const div=document.createElement("div"); div.className="panel";
-    div.innerHTML=`<h3><span class="pwc">${esc(pw)}</span> &nbsp;·&nbsp; ${esc(e.title)} &nbsp;<span class="type">${e.type==="birthday"?"生日专页":"卡片内容"}</span>${e.type==="birthday"?"<span class='type' style='margin-left:6px'>认识天数/称呼/信/照片墙自动生成</span>":""}</h3>`;
-    const cardsDiv=document.createElement("div");
-    (e.cards||[]).forEach((c,ix)=>{
-      const row=document.createElement("div"); row.className="card-row";
-      const type=c.type||(c.v?"video":(c.img?"image":"text"));
-      row.innerHTML=`
-        <select class="c-type">
-          <option value="text">文字</option>
-          <option value="letter">一封信</option>
-          <option value="image">图片</option>
-          <option value="video">视频</option>
-          <option value="link">网站链接</option>
-        </select>
-        <select class="c-anim">
-          <option value="">无动画</option>
-          <option value="fade">淡入</option>
-          <option value="rise">上浮</option>
-          <option value="zoom">放大</option>
-          <option value="float">浮动</option>
-          <option value="glow">微光</option>
-        </select>
-        <input class="c-t" value="${esc(c.t||"")}" placeholder="卡片标题">
-        <textarea class="c-p" placeholder="正文 / 信的内容（可含 [称呼]）">${esc(c.p||"")}</textarea>
-        <input class="c-img" value="${esc(c.img||"")}" placeholder="图片：粘贴链接">
-        <input class="c-v" value="${esc(c.v||"")}" placeholder="视频：粘贴链接（B站/外链），或上传小视频到仓库">
-        <div class="vid-hint">大视频（超过20MB）建议传 B 站：投稿完成后复制分享链接，粘贴到上方视频框。</div>
-        <input class="c-link" value="${esc(c.link||"")}" placeholder="网站链接，如 https://…">
-        <div class="row small"><button class="btn up-img">上传图片</button><button class="btn up-v">上传到仓库(≤20MB)</button></div>
-        <input type="file" class="f-img" accept="image/*">
-        <input type="file" class="f-v" accept="video/*">
-        <div class="up-down"><button class="up">▲</button><button class="dn">▼</button><button class="delc">✕</button></div>`;
-      cardsDiv.appendChild(row);
-      applyCardType(row, type);
-      row.querySelector(".c-anim").value=card.anim||"";
-    });
-    div.appendChild(cardsDiv);
-    const add=document.createElement("button"); add.className="btn"; add.textContent="＋ 添加卡片"; div.appendChild(add);
-    add.addEventListener("click",()=>{ (e.cards||(e.cards=[])).push({type:"text",t:"新卡片",p:"正文内容"}); renderCardList(); });
-    [...cardsDiv.children].forEach((row,ix)=>{
-      const card=e.cards[ix];
-      row.querySelector(".up").addEventListener("click",()=>{ if(ix>0){ [e.cards[ix-1],e.cards[ix]]=[e.cards[ix],e.cards[ix-1]]; renderCardList(); } });
-      row.querySelector(".dn").addEventListener("click",()=>{ if(ix<e.cards.length-1){ [e.cards[ix+1],e.cards[ix]]=[e.cards[ix],e.cards[ix+1]]; renderCardList(); } });
-      row.querySelector(".delc").addEventListener("click",()=>{ e.cards.splice(ix,1); renderCardList(); });
-      row.querySelector(".c-type").addEventListener("change",ev=>{ card.type=ev.value; applyCardType(row, ev.value); });
-      row.querySelector(".c-anim").addEventListener("change",ev=>card.anim=ev.value);
-      row.querySelector(".c-t").addEventListener("input",ev=>card.t=ev.value);
-      row.querySelector(".c-p").addEventListener("input",ev=>card.p=ev.value);
-      row.querySelector(".c-img").addEventListener("input",ev=>card.img=ev.value||"");
-      row.querySelector(".c-v").addEventListener("input",ev=>card.v=ev.value||"");
-      row.querySelector(".c-link").addEventListener("input",ev=>card.link=ev.value||"");
-      const fi=row.querySelector(".f-img"), fv=row.querySelector(".f-v");
-      row.querySelector(".up-img").addEventListener("click",()=>fi.click());
-      row.querySelector(".up-v").addEventListener("click",()=>fv.click());
-      fi.addEventListener("change",ev=>{ const f=ev.target.files[0]; if(!f)return; const r=new FileReader(); r.onload=()=>{ card.img=r.result; row.querySelector(".c-img").value="[已上传图片]"; toast("图片已嵌入（注意控制大小）"); }; r.readAsDataURL(f); ev.target.value=""; });
-      fv.addEventListener("change", async ev=>{
-        const f=ev.target.files[0]; if(!f)return;
-        ev.target.value="";
-        if(!window.api || !window.api.uploadRepoFile || !window.api.getVideoPath){ toast("此环境不支持上传到仓库（请用电脑版程序运行）"); return; }
-        const sizeMB=f.size/1024/1024;
-        if(sizeMB>20){ toast("视频 "+sizeMB.toFixed(1)+"MB 超过 20MB，建议传 B 站后粘贴链接"); return; }
-        const settings=getGhSettings();
-        if(!settings.token || !settings.owner || !settings.repo){ toast("请先在「发布·导出」填好 GitHub 令牌/仓库"); return; }
-        toast("正在上传视频到仓库…");
-        const path=window.api.getVideoPath(f);
-        const res=await window.api.uploadRepoFile(path, "videos/"+f.name, settings);
-        if(res && res.ok){ card.v=res.url; row.querySelector(".c-v").value=res.url; toast("已上传到仓库，播放链接已填入"); }
-        else { toast((res && res.msg) || "上传失败"); }
-      });
-    });
-    box.appendChild(div);
-  });
-}
-function applyCardType(row, type){
+/* ===== 密码 + 卡片 一体化 ===== */
+function cardTypeOf(c){ return c.type||(c.v?"video":(c.img?"image":"text")); }
+function buildCardRow(c, ix, pw, pws){
+  const row=document.createElement("div"); row.className="card-row";
+  const type=cardTypeOf(c);
+  row.innerHTML=`
+    <select class="c-pw">${pws.map(p=>`<option value="${esc(p)}">${esc(p)}</option>`).join("")}</select>
+    <select class="c-type">
+      <option value="text">文字</option><option value="letter">一封信</option><option value="image">图片</option><option value="video">视频</option><option value="link">网站链接</option>
+    </select>
+    <select class="c-anim">
+      <option value="">无动画</option><option value="fade">淡入</option><option value="rise">上浮</option><option value="zoom">放大</option><option value="float">浮动</option><option value="glow">微光</option>
+    </select>
+    <input type="color" class="c-bg" title="卡片背景色" value="#1a1622">
+    <input class="c-bgimg" placeholder="背景图：粘贴链接或上传">
+    <input class="c-t" value="${esc(c.t||"")}" placeholder="卡片标题">
+    <textarea class="c-p" placeholder="正文 / 信的内容（可含 [称呼]）">${esc(c.p||"")}</textarea>
+    <input class="c-img" value="${esc(c.img||"")}" placeholder="图片：粘贴链接">
+    <input class="c-v" value="${esc(c.v||"")}" placeholder="视频：粘贴链接（B站/外链），或上传小视频到仓库">
+    <div class="vid-hint">大视频（超过20MB）建议传 B 站：投稿完成后复制分享链接，粘贴到上方视频框。</div>
+    <input class="c-link" value="${esc(c.link||"")}" placeholder="网站链接，如 https://…">
+    <div class="row small">
+      <button class="btn up-bg">上传背景图</button><button class="btn up-img">上传图片</button><button class="btn up-v">上传到仓库(≤20MB)</button>
+      <button class="btn delc">删除此卡片</button>
+    </div>
+    <input type="file" class="f-bg" accept="image/*">
+    <input type="file" class="f-img" accept="image/*">
+    <input type="file" class="f-v" accept="video/*">
+    <div class="up-down"><button class="up" title="上移">▲</button><button class="dn" title="下移">▼</button></div>`;
+  row.querySelector(".c-pw").value=pw;
   row.querySelector(".c-type").value=type;
+  row.querySelector(".c-anim").value=c.anim||"";
+  row.querySelector(".c-bg").value=c.bg||"#1a1622";
+  row.querySelector(".c-bgimg").value=c.bgimg||"";
+  applyType(row, type);
+  return row;
+}
+function applyType(row,type){
   const imgs=row.querySelector(".c-img"), vs=row.querySelector(".c-v"), lk=row.querySelector(".c-link"), up=row.querySelector(".up-img"), uv=row.querySelector(".up-v"), hint=row.querySelector(".vid-hint");
   [imgs,vs,lk,up,uv,hint].forEach(x=>{ if(x) x.style.display="none"; });
   const show=(x,on)=>{ if(x) x.style.display=on?"block":"none"; };
@@ -326,57 +283,81 @@ function applyCardType(row, type){
   else if(type==="video"){ show(vs,true); show(uv,true); show(hint,true); }
   else if(type==="link"){ show(lk,true); }
 }
-function getGhSettings(){ try{ const s=localStorage.getItem("jingxi_github"); if(s) return JSON.parse(s); }catch(e){} return {owner:"",repo:"",branch:"main",token:""}; }
-
-/* ===== 生日通用设置 ===== */
-function renderBirthday(){
-  const b=content.birthday;
-  $("f_nick").value=b.nickname||""; $("f_meet").value=b.meetDate||""; $("f_bless").value=(b.blessings||[]).join("\n"); $("f_letter").value=b.letter||"";
-  renderPhotos();
-}
-function renderPhotos(){
-  const host=$("photoList"); host.innerHTML="";
-  (content.birthday.photos||[]).forEach((src,i)=>{
-    const t=document.createElement("div"); t.className="photo-tile";
-    t.innerHTML=`<img src="${src}"><button class="btn danger" data-i="${i}">删除</button>`; host.appendChild(t);
+function renderPwdCards(){
+  const box=$("pwdCardList"); box.innerHTML="";
+  const pws=Object.keys(content.passwords);
+  if(!pws.length){ box.innerHTML='<div class="panel"><p style="color:var(--muted)">还没有密码，点下方「新增密码」开始。</p></div>'; return; }
+  pws.forEach(pw=>{
+    const e=content.passwords[pw];
+    const panel=document.createElement("div"); panel.className="panel";
+    const head=document.createElement("div"); head.className="pw-head";
+    head.innerHTML=`<span class="pwc">密码</span><input class="e-pw" value="${esc(pw)}" style="width:110px" title="改密码回车生效">
+      <input class="e-title" value="${esc(e.title)}" placeholder="标题">
+      <span class="type">${e.type==="birthday"?"生日专页":"卡片内容"}</span>
+      <button class="btn danger delpw">删除密码（连同其卡片）</button>`;
+    panel.appendChild(head);
+    const cardsDiv=document.createElement("div");
+    (e.cards||(e.cards=[])).forEach((c,ix)=>cardsDiv.appendChild(buildCardRow(c,ix,pw,pws)));
+    panel.appendChild(cardsDiv);
+    const add=document.createElement("button"); add.className="btn"; add.textContent="＋ 给此密码添加卡片"; panel.appendChild(add);
+    box.appendChild(panel);
+    head.querySelector(".e-pw").addEventListener("change",ev=>{ const nv=ev.value.trim(); if(!nv||nv===pw)return; if(content.passwords[nv]){toast("该密码已存在");ev.value=pw;return;} const tmp=JSON.parse(JSON.stringify(e)); delete content.passwords[pw]; content.passwords[nv]=tmp; renderAll(); toast("密码 "+pw+" 已改为 "+nv); });
+    head.querySelector(".e-title").addEventListener("input",ev=>e.title=ev.value);
+    head.querySelector(".delpw").addEventListener("click",()=>{ if(confirm("删除密码 "+pw+" 吗？它的全部卡片也会一并删除。")){ delete content.passwords[pw]; renderAll(); toast("已删除密码 "+pw+" 及其卡片"); } });
+    add.addEventListener("click",()=>{ e.cards.push({type:"text",t:"新卡片",p:"正文内容"}); renderAll(); });
+    [...cardsDiv.children].forEach((row,ix)=>{
+      const card=e.cards[ix];
+      row.querySelector(".up").addEventListener("click",()=>{ if(ix>0){ [e.cards[ix-1],e.cards[ix]]=[e.cards[ix],e.cards[ix-1]]; renderAll(); } });
+      row.querySelector(".dn").addEventListener("click",()=>{ if(ix<e.cards.length-1){ [e.cards[ix+1],e.cards[ix]]=[e.cards[ix],e.cards[ix+1]]; renderAll(); } });
+      row.querySelector(".delc").addEventListener("click",()=>{ e.cards.splice(ix,1); renderAll(); });
+      row.querySelector(".c-pw").addEventListener("change",ev=>{ const target=ev.value; if(target===pw)return; if(!content.passwords[target])return; e.cards.splice(ix,1); (content.passwords[target].cards||(content.passwords[target].cards=[])).push(card); renderAll(); toast("卡片已移动到密码 "+target); });
+      row.querySelector(".c-type").addEventListener("change",ev=>{ card.type=ev.value; applyType(row,ev.value); });
+      row.querySelector(".c-anim").addEventListener("change",ev=>card.anim=ev.value);
+      row.querySelector(".c-bg").addEventListener("input",ev=>card.bg=ev.value);
+      row.querySelector(".c-bgimg").addEventListener("input",ev=>card.bgimg=ev.value||"");
+      row.querySelector(".c-t").addEventListener("input",ev=>card.t=ev.value);
+      row.querySelector(".c-p").addEventListener("input",ev=>card.p=ev.value);
+      row.querySelector(".c-img").addEventListener("input",ev=>card.img=ev.value||"");
+      row.querySelector(".c-v").addEventListener("input",ev=>card.v=ev.value||"");
+      row.querySelector(".c-link").addEventListener("input",ev=>card.link=ev.value||"");
+      const fbg=row.querySelector(".f-bg"), fi=row.querySelector(".f-img"), fv=row.querySelector(".f-v");
+      row.querySelector(".up-bg").addEventListener("click",()=>fbg.click());
+      row.querySelector(".up-img").addEventListener("click",()=>fi.click());
+      row.querySelector(".up-v").addEventListener("click",()=>fv.click());
+      fbg.addEventListener("change",ev=>{ const f=ev.target.files[0]; if(!f)return; const r=new FileReader(); r.onload=()=>{ card.bgimg=r.result; row.querySelector(".c-bgimg").value="[已上传背景图]"; toast("背景图已嵌入"); }; r.readAsDataURL(f); ev.target.value=""; });
+      fi.addEventListener("change",ev=>{ const f=ev.target.files[0]; if(!f)return; const r=new FileReader(); r.onload=()=>{ card.img=r.result; row.querySelector(".c-img").value="[已上传图片]"; toast("图片已嵌入（注意控制大小）"); }; r.readAsDataURL(f); ev.target.value=""; });
+      fv.addEventListener("change",async ev=>{
+        const f=ev.target.files[0]; if(!f)return; ev.target.value="";
+        if(!window.api || !window.api.uploadRepoFile || !window.api.getVideoPath){ toast("此环境不支持上传到仓库（请用电脑版程序运行）"); return; }
+        const sizeMB=f.size/1024/1024;
+        if(sizeMB>20){ toast("视频 "+sizeMB.toFixed(1)+"MB 超过 20MB，建议传 B 站后粘贴链接"); return; }
+        const settings=getGhSettings();
+        if(!settings.token||!settings.owner||!settings.repo){ toast("请先在「发布·导出」填好 GitHub 令牌/仓库"); return; }
+        toast("正在上传视频到仓库…");
+        const path=window.api.getVideoPath(f);
+        const res=await window.api.uploadRepoFile(path,"videos/"+f.name,settings);
+        if(res&&res.ok){ card.v=res.url; row.querySelector(".c-v").value=res.url; toast("已上传到仓库，播放链接已填入"); }
+        else toast((res&&res.msg)||"上传失败");
+      });
+    });
   });
-  host.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{ content.birthday.photos.splice(+b.dataset.i,1); renderPhotos(); }));
 }
-$("f_nick").addEventListener("input",e=>content.birthday.nickname=e.value);
-$("f_meet").addEventListener("change",e=>content.birthday.meetDate=e.value);
-$("f_bless").addEventListener("input",e=>content.birthday.blessings=e.value.split("\n").filter(Boolean));
-$("f_letter").addEventListener("input",e=>content.birthday.letter=e.value);
-$("addPhoto").addEventListener("click",()=>$("photoFile").click());
-$("photoFile").addEventListener("change",e=>{ const fs=[...e.target.files]; if(!fs.length)return; fs.forEach(f=>{ const r=new FileReader(); r.onload=()=>{ content.birthday.photos.push(r.result); renderPhotos(); }; r.readAsDataURL(f); }); e.target.value=""; });
+$("addPw").addEventListener("click",()=>{ const pw=prompt("新密码（如：0616）"); if(!pw)return; if(content.passwords[pw]){toast("该密码已存在");return;} content.passwords[pw]={title:"新惊喜",cards:[{type:"text",t:"第一张卡片",p:"正文内容"}]}; renderAll(); toast("已新增密码 "+pw+" 和它的第一张卡片"); });
 
-function renderAll(){ renderPwList(); renderCardList(); renderBirthday(); renderPublish(); loadGh(); }
-function renderPublish(){
-  $("pub_pw").textContent=Object.keys(content.passwords).length;
-  $("pub_meet").textContent=content.birthday.meetDate||"-";
-  $("pub_photo").textContent=(content.birthday.photos||[]).length;
-}
-$("saveBtn").addEventListener("click",()=>{ try{ localStorage.setItem(LS_KEY,JSON.stringify(content)); }catch(e){ toast("保存失败（存储已满）"); return; } renderPublish(); toast("草稿已保存"); });
+function renderAll(){ renderBirthdayPanel(); renderPwdCards(); renderPublish(); loadGh(); }
+function renderPublish(){ $("pub_pw").textContent=Object.keys(content.passwords).length; $("pub_meet").textContent=content.birthday.meetDate||"-"; $("pub_photo").textContent=(content.birthday.photos||[]).length; }
+$("saveBtn").addEventListener("click",()=>{ try{ localStorage.setItem(LS_KEY,JSON.stringify(content)); }catch(e){ toast("保存失败（存储已满）"); return; } renderPublish(); $("pub_time").textContent=new Date().toLocaleTimeString('zh-CN',{hour12:false}); toast("草稿已保存"); });
 
 /* ===== GitHub 发布设置 ===== */
 function loadGh(){ try{ const s=localStorage.getItem(GH_KEY); if(s){ const g=JSON.parse(s); $("gh_owner").value=g.owner||""; $("gh_repo").value=g.repo||""; $("gh_branch").value=g.branch||"main"; $("gh_token").value=g.token||""; } }catch(e){} }
-$("saveGh").addEventListener("click",()=>{
-  const g={owner:$("gh_owner").value.trim(),repo:$("gh_repo").value.trim(),branch:$("gh_branch").value.trim()||"main",token:$("gh_token").value.trim()};
-  if(!g.owner||!g.repo){toast("请填写仓库所有者和仓库名");return;}
-  try{ localStorage.setItem(GH_KEY,JSON.stringify(g)); }catch(e){}
-  toast("GitHub 设置已保存");
-});
-function ghLine(t,box){ const el=box||$("ghOut"); el.value+=t+"\n"; el.scrollTop=el.scrollHeight; }
+$("saveGh").addEventListener("click",()=>{ const g={owner:$("gh_owner").value.trim(),repo:$("gh_repo").value.trim(),branch:$("gh_branch").value.trim()||"main",token:$("gh_token").value.trim()}; if(!g.owner||!g.repo){toast("请填写仓库所有者和仓库名");return;} try{ localStorage.setItem(GH_KEY,JSON.stringify(g)); }catch(e){} toast("GitHub 设置已保存"); });
+function ghLine(t){ const el=$("ghOut"); el.value+=t+"\n"; el.scrollTop=el.scrollHeight; }
 if(window.api && window.api.publishGithub){
   $("publishGithub").addEventListener("click",async()=>{
-    const g={owner:$("gh_owner").value.trim(),repo:$("gh_repo").value.trim(),branch:$("gh_branch").value.trim()||"main",token:$("gh_token").value.trim()};
-    if(!g.owner||!g.repo||!g.token){toast("请先在设置里填好所有者/仓库/令牌");return;}
-    content.version = content.version || "1.00";
-    /* 自增版本号（每次 +0.01，保留两位小数），让手机端识别为更新 */
-    const curNum = parseFloat(content.version) || 1;
-    content.version = (Math.round((curNum + 0.01) * 100) / 100).toFixed(2);
-    const btn=$("publishGithub"); btn.disabled=true; btn.textContent="正在发布到 GitHub…";
-    $("ghOut").value="";
-    ghLine("[开始] 正在发布到 GitHub… 新版本 "+content.version);
+    const g=getGhSettings(); const btn=$("publishGithub");
+    if(!g.token||!g.owner||!g.repo){ toast("请先在设置里填好所有者/仓库/令牌"); return; }
+    const curNum=parseFloat(content.version)||1; content.version=(Math.round((curNum+0.01)*100)/100).toFixed(2);
+    btn.disabled=true; btn.textContent="正在发布到 GitHub…"; $("ghOut").value=""; ghLine("[开始] 发布到 GitHub… 新版本 "+content.version);
     const res=await window.api.publishGithub(JSON.stringify(content,null,2), g);
     btn.disabled=false; btn.textContent="发布到GitHub（手机免安装静默更新）";
     toast(res==="done" ? "已发布！手机下次打开自动更新" : "发布失败，见结果窗口");
@@ -384,28 +365,14 @@ if(window.api && window.api.publishGithub){
 }else{ const b=$("publishGithub"); if(b){ b.disabled=true; b.textContent="发布到GitHub（需电脑版程序运行）"; } }
 
 /* ===== 导出 / APK ===== */
-$("doExport").addEventListener("click",()=>{
-  const json=JSON.stringify(content,null,2);
-  try{ localStorage.setItem(LS_KEY,json); }catch(e){}
-  $("export").value=json;
-  const blob=new Blob([json],{type:"application/json"}); const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="惊喜内容数据.json"; a.click();
-  renderPublish(); toast("已导出 content.json");
-});
+$("doExport").addEventListener("click",()=>{ const json=JSON.stringify(content,null,2); try{ localStorage.setItem(LS_KEY,json); }catch(e){} $("export").value=json; const blob=new Blob([json],{type:"application/json"}); const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="惊喜内容数据.json"; a.click(); renderPublish(); toast("已导出 content.json"); });
 $("publishBtn").addEventListener("click",()=>$("doExport").click());
 function appendBuild(s){ const t=$("buildOut"); t.value+=s; t.scrollTop=t.scrollHeight; }
 if(window.api && window.api.publishMobile){
-  $("publishMobile").addEventListener("click",async()=>{
-    const btn=$("publishMobile"); btn.disabled=true; btn.textContent="正在打包…";
-    $("buildOut").value="";
-    appendBuild("[开始] 正在生成新 APK…（约1-10分钟）\n");
-    if(window.api.onBuildOutput) window.api.onBuildOutput(l=>appendBuild(l));
-    const res=await window.api.publishMobile(content);
-    btn.disabled=false; btn.textContent="发布手机版APP（重新生成 APK）";
-    toast(res==="done" ? "打包完成！新APK已生成" : (res==="script-missing"?"打包脚本缺失":"打包结束，见进度"));
-  });
+  $("publishMobile").addEventListener("click",async()=>{ const btn=$("publishMobile"); btn.disabled=true; btn.textContent="正在打包…"; $("buildOut").value=""; appendBuild("[开始] 正在生成新 APK…（约1-10分钟）\n"); if(window.api.onBuildOutput) window.api.onBuildOutput(l=>appendBuild(l)); const res=await window.api.publishMobile(content); btn.disabled=false; btn.textContent="发布手机版APP（重新生成 APK）"; toast(res==="done" ? "打包完成！新APK已生成" : (res==="script-missing"?"打包脚本缺失":"打包结束，见进度")); });
 }else{ const b=$("publishMobile"); if(b){ b.disabled=true; b.textContent="发布手机版APP（需运行电脑版程序）"; } }
 
-/* ===== 修改管理员密码 ===== */
+/* ===== 管理员密码 ===== */
 $("changePwd").addEventListener("click",()=>{ const old=$("a_old").value, n1=$("a_new").value, n2=$("a_new2").value; if(old!==getAdminPwd()){toast("当前密码不正确");return;} if(!n1||n1!==n2){toast("两次新密码不一致或为空");return;} setAdminPwd(n1); $("a_old").value="";$("a_new").value="";$("a_new2").value=""; toast("管理员密码已更新"); });
 $("logoutBtn").addEventListener("click",()=>{ localStorage.removeItem("jingxi_admin_pwd"); location.reload(); });
 </script>
