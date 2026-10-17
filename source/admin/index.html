@@ -65,6 +65,7 @@ input,textarea,select,button{font-family:inherit}
 .card-row .row.small{display:flex;gap:8px;margin-top:6px;flex-basis:100%;flex-wrap:wrap}
 .card-row .row.small .btn{padding:6px 12px;font-size:12px}
 .card-row .f-img,.card-row .f-v{display:none}
+.card-row .vid-hint{flex-basis:100%;font-size:11px;color:#9a9380;background:rgba(255,255,255,.03);border:1px dashed var(--line);border-radius:6px;padding:6px 10px}
 .up-down button:hover{color:var(--gold2)}
 .photo-list{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
 .photo-tile{width:86px;text-align:center}
@@ -268,9 +269,10 @@ function renderCardList(){
         <input class="c-t" value="${esc(c.t||"")}" placeholder="卡片标题">
         <textarea class="c-p" placeholder="正文 / 信的内容（可含 [称呼]）">${esc(c.p||"")}</textarea>
         <input class="c-img" value="${esc(c.img||"")}" placeholder="图片：粘贴链接">
-        <input class="c-v" value="${esc(c.v||"")}" placeholder="视频：粘贴外链（推荐），或上传小视频">
+        <input class="c-v" value="${esc(c.v||"")}" placeholder="视频：粘贴链接（B站/外链），或上传小视频到仓库">
+        <div class="vid-hint">大视频（超过20MB）建议传 B 站：投稿完成后复制分享链接，粘贴到上方视频框。</div>
         <input class="c-link" value="${esc(c.link||"")}" placeholder="网站链接，如 https://…">
-        <div class="row small"><button class="btn up-img">上传图片</button><button class="btn up-v">上传视频</button></div>
+        <div class="row small"><button class="btn up-img">上传图片</button><button class="btn up-v">上传到仓库(≤20MB)</button></div>
         <input type="file" class="f-img" accept="image/*">
         <input type="file" class="f-v" accept="video/*">
         <div class="up-down"><button class="up">▲</button><button class="dn">▼</button><button class="delc">✕</button></div>`;
@@ -297,20 +299,34 @@ function renderCardList(){
       row.querySelector(".up-img").addEventListener("click",()=>fi.click());
       row.querySelector(".up-v").addEventListener("click",()=>fv.click());
       fi.addEventListener("change",ev=>{ const f=ev.target.files[0]; if(!f)return; const r=new FileReader(); r.onload=()=>{ card.img=r.result; row.querySelector(".c-img").value="[已上传图片]"; toast("图片已嵌入（注意控制大小）"); }; r.readAsDataURL(f); ev.target.value=""; });
-      fv.addEventListener("change",ev=>{ const f=ev.target.files[0]; if(!f)return; if(f.size>6*1024*1024) toast("视频较大，建议改粘贴外链"); const r=new FileReader(); r.onload=()=>{ card.v=r.result; row.querySelector(".c-v").value="[已上传视频]"; toast("视频已嵌入（体积大时建议外链）"); }; r.readAsDataURL(f); ev.target.value=""; });
+      fv.addEventListener("change", async ev=>{
+        const f=ev.target.files[0]; if(!f)return;
+        ev.target.value="";
+        if(!window.api || !window.api.uploadRepoFile || !window.api.getVideoPath){ toast("此环境不支持上传到仓库（请用电脑版程序运行）"); return; }
+        const sizeMB=f.size/1024/1024;
+        if(sizeMB>20){ toast("视频 "+sizeMB.toFixed(1)+"MB 超过 20MB，建议传 B 站后粘贴链接"); return; }
+        const settings=getGhSettings();
+        if(!settings.token || !settings.owner || !settings.repo){ toast("请先在「发布·导出」填好 GitHub 令牌/仓库"); return; }
+        toast("正在上传视频到仓库…");
+        const path=window.api.getVideoPath(f);
+        const res=await window.api.uploadRepoFile(path, "videos/"+f.name, settings);
+        if(res && res.ok){ card.v=res.url; row.querySelector(".c-v").value=res.url; toast("已上传到仓库，播放链接已填入"); }
+        else { toast((res && res.msg) || "上传失败"); }
+      });
     });
     box.appendChild(div);
   });
 }
 function applyCardType(row, type){
   row.querySelector(".c-type").value=type;
-  const imgs=row.querySelector(".c-img"), vs=row.querySelector(".c-v"), lk=row.querySelector(".c-link"), up=row.querySelector(".up-img"), uv=row.querySelector(".up-v");
-  [imgs,vs,lk,up,uv].forEach(x=>{ if(x) x.style.display="none"; });
+  const imgs=row.querySelector(".c-img"), vs=row.querySelector(".c-v"), lk=row.querySelector(".c-link"), up=row.querySelector(".up-img"), uv=row.querySelector(".up-v"), hint=row.querySelector(".vid-hint");
+  [imgs,vs,lk,up,uv,hint].forEach(x=>{ if(x) x.style.display="none"; });
   const show=(x,on)=>{ if(x) x.style.display=on?"block":"none"; };
   if(type==="image"){ show(imgs,true); show(up,true); }
-  else if(type==="video"){ show(vs,true); show(uv,true); }
+  else if(type==="video"){ show(vs,true); show(uv,true); show(hint,true); }
   else if(type==="link"){ show(lk,true); }
 }
+function getGhSettings(){ try{ const s=localStorage.getItem("jingxi_github"); if(s) return JSON.parse(s); }catch(e){} return {owner:"",repo:"",branch:"main",token:""}; }
 
 /* ===== 生日通用设置 ===== */
 function renderBirthday(){
