@@ -202,6 +202,7 @@ const DEFAULT_CONTENT={
 const LS_KEY="jingxi_content_v3";
 const PASS_KEY="jingxi_admin_pass";
 const GH_KEY="jingxi_github";
+const GITHUB_DEFAULTS={owner:"kongxinqhl",repo:"surprise-content",branch:"main",token:"PASTE_YOUR_GITHUB_TOKEN_HERE"};
 function getAdminPwd(){ try{ const v=localStorage.getItem(PASS_KEY); if(v) return v; }catch(e){} return "admin888"; }
 function setAdminPwd(p){ try{ localStorage.setItem(PASS_KEY, p); }catch(e){} }
 let content=JSON.parse(JSON.stringify(DEFAULT_CONTENT));
@@ -210,7 +211,7 @@ try{ const s=localStorage.getItem(LS_KEY); if(s){ content=JSON.parse(s); } const
 if(content && !content.version) content.version="1.00";
 function toast(m){ const t=$("toast"); t.textContent=m; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),2200); }
 function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
-function getGhSettings(){ try{ const s=localStorage.getItem(GH_KEY); if(s) return JSON.parse(s); }catch(e){} return {owner:"",repo:"",branch:"main",token:""}; }
+function getGhSettings(){ let stored=null; try{ const s=localStorage.getItem(GH_KEY); if(s) stored=JSON.parse(s); }catch(e){} return Object.assign({},GITHUB_DEFAULTS, stored||{}); }
 
 $("loginBtn").addEventListener("click",()=>{ if($("apwd").value===getAdminPwd()){ adminAuthed=true; localStorage.setItem("jingxi_admin_pwd","1"); $("login").classList.add("hidden"); $("shell").classList.remove("hidden"); renderAll(); toast("登录成功"); }else{ $("loginErr").textContent="密码错误"; } });
 $("apwd").addEventListener("keydown",e=>{ if(e.key==="Enter") $("loginBtn").click(); });
@@ -349,8 +350,29 @@ function renderPublish(){ $("pub_pw").textContent=Object.keys(content.passwords)
 $("saveBtn").addEventListener("click",()=>{ try{ localStorage.setItem(LS_KEY,JSON.stringify(content)); }catch(e){ toast("保存失败（存储已满）"); return; } renderPublish(); $("pub_time").textContent=new Date().toLocaleTimeString('zh-CN',{hour12:false}); toast("草稿已保存"); });
 
 /* ===== GitHub 发布设置 ===== */
-function loadGh(){ try{ const s=localStorage.getItem(GH_KEY); if(s){ const g=JSON.parse(s); $("gh_owner").value=g.owner||""; $("gh_repo").value=g.repo||""; $("gh_branch").value=g.branch||"main"; $("gh_token").value=g.token||""; } }catch(e){} }
-$("saveGh").addEventListener("click",()=>{ const g={owner:$("gh_owner").value.trim(),repo:$("gh_repo").value.trim(),branch:$("gh_branch").value.trim()||"main",token:$("gh_token").value.trim()}; if(!g.owner||!g.repo){toast("请填写仓库所有者和仓库名");return;} try{ localStorage.setItem(GH_KEY,JSON.stringify(g)); }catch(e){} toast("GitHub 设置已保存"); });
+function loadGh(){
+  const d=GITHUB_DEFAULTS;
+  let g=null;
+  if(window.api && window.api.githubGet){
+    window.api.githubGet().then(res=>{ if(res&&res.token){ g=res; fillGh(g); } }).catch(()=>{});
+  }
+  try{ const s=localStorage.getItem(GH_KEY); if(s){ g=JSON.parse(s); } }catch(e){}
+  setTimeout(()=>fillGh(g||d),0);
+}
+function fillGh(g){
+  g=Object.assign({},GITHUB_DEFAULTS,g||{});
+  $("gh_owner").value=g.owner||GITHUB_DEFAULTS.owner;
+  $("gh_repo").value=g.repo||GITHUB_DEFAULTS.repo;
+  $("gh_branch").value=g.branch||"main";
+  $("gh_token").value=g.token||GITHUB_DEFAULTS.token;
+  $("gh_owner").disabled=true; $("gh_repo").disabled=true;
+}
+$("saveGh").addEventListener("click",()=>{
+  const g={owner:GITHUB_DEFAULTS.owner,repo:GITHUB_DEFAULTS.repo,branch:$("gh_branch").value.trim()||"main",token:$("gh_token").value.trim()||GITHUB_DEFAULTS.token};
+  try{ localStorage.setItem(GH_KEY,JSON.stringify(g)); }catch(e){}
+  if(window.api && window.api.githubSave){ window.api.githubSave(g).then(r=>{ toast(r==="done"?"GitHub 设置已保存（重启不丢失）":"保存到磁盘失败，但已写入本地"); }); }
+  else toast("GitHub 设置已保存");
+});
 function ghLine(t){ const el=$("ghOut"); el.value+=t+"\n"; el.scrollTop=el.scrollHeight; }
 if(window.api && window.api.publishGithub){
   $("publishGithub").addEventListener("click",async()=>{
