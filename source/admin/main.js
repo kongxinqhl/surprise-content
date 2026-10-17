@@ -24,6 +24,21 @@ app.whenReady().then(() => {
   const win = createWindow();
   app.on('activate', () => { if (BrowserWindow.getAllWindows().length === 0) createWindow(); });
 
+  ipcMain.handle('github-get', async () => {
+    try {
+      const file = path.join(app.getPath('userData'), 'github.json');
+      if (fs.existsSync(file)) return JSON.parse(fs.readFileSync(file, 'utf-8'));
+    } catch (_) {}
+    return null;
+  });
+  ipcMain.handle('github-save', async (_e, settings) => {
+    try {
+      const file = path.join(app.getPath('userData'), 'github.json');
+      fs.writeFileSync(file, JSON.stringify(settings, null, 2), 'utf-8');
+      return 'done';
+    } catch (err) { return 'err:' + err.message; }
+  });
+
   ipcMain.handle('publish-mobile', (_e, contentJson) => {
     return new Promise((resolve) => {
       const desktopDir = 'C:\\Users\\16608\\Doubao\\chats\\2026-10-17\\new-chat\\desktop';
