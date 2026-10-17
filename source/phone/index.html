@@ -39,13 +39,15 @@ body{background:radial-gradient(120% 90% at 50% -10%,#1a1622 0%,#0a0a0f 60%,#070
 .car-head{width:100%;padding:6px clamp(14px,4vw,22px) 0;display:flex;align-items:center;justify-content:space-between}
 .car-head .t{font-size:clamp(18px,5.5vw,24px);font-weight:900;color:#f6d79a}
 .car-head .c{font-size:13px;color:#9a937f;font-family:"Noto Sans SC",system-ui,sans-serif}
-.car-wrap{flex:1;display:flex;align-items:center;justify-content:center;overflow:hidden;width:100%;position:relative}
+.car-wrap{flex:1;display:flex;align-items:center;justify-content:center;overflow:hidden;width:100%;position:relative;touch-action:pan-y}
 .track{display:flex;width:100%;height:100%;transition:transform .45s cubic-bezier(.22,.61,.36,1)}
-.slide{flex:0 0 100%;width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:clamp(16px,5vw,30px);overflow:auto;-webkit-overflow-scrolling:touch}
-.card{width:100%;max-width:94vw;margin:0 auto;background:rgba(20,20,30,.82);border:1px solid rgba(232,185,106,.25);border-radius:18px;padding:clamp(20px,5.5vw,34px);min-height:min(56vh,400px);display:flex;flex-direction:column;justify-content:center;text-align:center;box-shadow:0 30px 70px rgba(0,0,0,.5)}
-.card .k{font-size:11px;letter-spacing:.3em;color:#e8b96a;opacity:.85;font-family:"Noto Sans SC",system-ui,sans-serif;margin-bottom:14px}
-.card h2{font-size:clamp(20px,6vw,28px);font-weight:900;color:#f6d79a;line-height:1.5;white-space:pre-wrap;word-break:break-word}
-.card p{margin-top:14px;font-size:clamp(15px,4.6vw,18px);line-height:2;color:#f2ece0;white-space:pre-wrap;word-break:break-word;letter-spacing:.03em}
+.slide{flex:0 0 100%;width:100%;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.card{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(26px,7vw,56px);overflow:auto;-webkit-overflow-scrolling:touch;position:relative;background:#1a1622}
+.card.hasbg::before{content:"";position:absolute;inset:0;background:rgba(10,10,15,.40);z-index:0;pointer-events:none}
+.card>*{position:relative;z-index:1}
+.card .k{font-size:11px;letter-spacing:.3em;color:#e8b96a;opacity:.85;font-family:"Noto Sans SC",system-ui,sans-serif;margin-bottom:14px;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+.card h2{font-size:clamp(22px,7vw,32px);font-weight:900;color:#f6d79a;line-height:1.5;white-space:pre-wrap;word-break:break-word;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+.card p{margin-top:14px;font-size:clamp(16px,5vw,20px);line-height:2;color:#f2ece0;white-space:pre-wrap;word-break:break-word;letter-spacing:.03em;text-shadow:0 1px 8px rgba(0,0,0,.45)}
 .card-media{margin-top:16px;width:100%;border-radius:12px;overflow:hidden;border:1px solid rgba(232,185,106,.18)}
 .card-media img{width:100%;display:block;object-fit:cover;max-height:40vh}
 .card-media video{width:100%;display:block;max-height:44vh;background:#000}
@@ -218,7 +220,15 @@ function renderCards(entry){
   curIdx=0;
   $("cardTitle").textContent=entry.title;
   const track=$("track"); track.innerHTML="";
-  entry.cards.forEach(c=>{ const div=document.createElement("div"); div.className="slide"; div.innerHTML=`<div class="card" data-anim="${c.anim||""}">${resolveCard(c)}</div>`; track.appendChild(div); });
+  entry.cards.forEach(c=>{
+    const div=document.createElement("div"); div.className="slide";
+    let bgCss="";
+    if(c.bgimg){ bgCss+=`background-image:url("${c.bgimg}");background-size:cover;background-position:center;`; }
+    if(c.bg){ bgCss+=`background-color:${c.bg};`; }
+    const cls="card"+(c.bgimg?" hasbg":"");
+    div.innerHTML=`<div class="${cls}" data-anim="${c.anim||""}" style="${bgCss}">${resolveCard(c)}</div>`;
+    track.appendChild(div);
+  });
   slideCount=track.children.length;
   renderDots(); updatePos(); updateCount();
 }
@@ -243,9 +253,16 @@ let tx=0,ty=0,swiping=false;
 $("car-wrap").addEventListener("touchstart",e=>{ tx=e.touches[0].clientX; ty=e.touches[0].clientY; swiping=true; });
 $("car-wrap").addEventListener("touchend",e=>{ if(!swiping)return; swiping=false; const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty; if(Math.abs(dx)>50 && Math.abs(dx)>Math.abs(dy)){ dx<0?next():prev(); } });
 
-function openLb(src){ $("lbImg").src=src; $("lightbox").style.display="flex"; }
-$("lbClose").addEventListener("click",()=>$("lightbox").style.display="none");
-$("lightbox").addEventListener("click",e=>{ if(e.target===e.currentTarget) $("lightbox").style.display="none"; });
+function openLb(src){ lbScale=1;lbTx=0;lbTy=0; applyLb(); $("lbImg").src=src; $("lightbox").style.display="flex"; }
+const lb=$("lightbox"), lbImg=$("lbImg");
+let lbScale=1, lbTx=0, lbTy=0;
+function applyLb(){ lbImg.style.transform=`translate(${lbTx}px,${lbTy}px) scale(${lbScale})`; }
+$("lbClose").addEventListener("click",()=>{ lb.style.display="none"; lbScale=1;lbTx=0;lbTy=0;applyLb(); });
+lb.addEventListener("click",e=>{ if(e.target===e.currentTarget){ lb.style.display="none"; lbScale=1;lbTx=0;lbTy=0;applyLb(); } });
+let lbTouch=null, lbLastTap=0;
+lb.addEventListener("touchstart",e=>{ e.preventDefault(); if(e.touches.length===2){ const d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY); lbTouch={mode:"pinch",d0:d,s0:lbScale}; } else if(e.touches.length===1){ lbTouch={mode:"pan",x0:e.touches[0].clientX,y0:e.touches[0].clientY,tx0:lbTx,ty0:lbTy,moved:false}; } },{passive:false});
+lb.addEventListener("touchmove",e=>{ e.preventDefault(); if(!lbTouch)return; if(lbTouch.mode==="pinch"&&e.touches.length===2){ const d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY); if(lbTouch.d0>0){ lbScale=Math.min(5,Math.max(1,lbTouch.s0*(d/lbTouch.d0))); applyLb(); } } else if(lbTouch.mode==="pan"&&e.touches.length===1){ const dx=e.touches[0].clientX-lbTouch.x0, dy=e.touches[0].clientY-lbTouch.y0; if(Math.abs(dx)>6||Math.abs(dy)>6) lbTouch.moved=true; if(lbScale>1){ lbTx=lbTouch.tx0+dx; lbTy=lbTouch.ty0+dy; applyLb(); } } },{passive:false});
+lb.addEventListener("touchend",e=>{ if(!lbTouch)return; const mode=lbTouch.mode; const wasTap=!lbTouch.moved; lbTouch=null; if(mode==="pan"&&wasTap){ const now=Date.now(); if(now-lbLastTap<300){ lbScale = lbScale>1?1:2; if(lbScale===1){lbTx=0;lbTy=0;} applyLb(); lbLastTap=0; } else { lbLastTap=now; } } },{passive:true});
 
 /* 导入内容 */
 $("impBtn").addEventListener("click",()=>$("impFile").click());
