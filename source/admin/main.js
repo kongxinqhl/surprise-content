@@ -114,5 +114,22 @@ app.whenReady().then(() => {
       return 'error';
     }
   });
+
+  ipcMain.handle('upload-repo-file', async (_e, localPath, remotePath, settings) => {
+    try {
+      const { owner, repo, branch, token } = settings;
+      if (!owner || !repo || !token) return { ok: false, msg: '缺少 GitHub 设置（请在发布·导出填好令牌/仓库）' };
+      const api = `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/contents/${remotePath}`;
+      const headers = { 'Authorization': `token ${token}`, 'User-Agent': 'surprise-admin', 'Accept': 'application/vnd.github+json' };
+      let sha = null;
+      try { const ex = await fetch(`${api}?ref=${encodeURIComponent(branch || 'main')}`, { headers }); if (ex.ok) { const j = await ex.json(); sha = j.sha; } } catch (_) {}
+      const data = fs.readFileSync(localPath);
+      const body = { message: '上传视频 ' + remotePath, content: Buffer.from(data).toString('base64'), branch: branch || 'main' };
+      if (sha) body.sha = sha;
+      const r = await fetch(api, { method: 'PUT', headers, body: JSON.stringify(body) });
+      if (!r.ok) { const e = await r.json().catch(() => ({})); return { ok: false, msg: '上传失败 HTTP ' + r.status + ': ' + (e.message || r.statusText) }; }
+      return { ok: true, url: `https://cdn.jsdelivr.net/gh/${owner}/${repo}@${branch || 'main'}/${remotePath}` };
+    } catch (err) { return { ok: false, msg: '上传异常：' + err.message }; }
+  });
 });
 app.on('window-all-closed', () => { app.quit(); });
